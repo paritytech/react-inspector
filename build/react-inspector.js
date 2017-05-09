@@ -4649,11 +4649,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          'Array[' + object.length + ']'
 	        );
 	      }
-	      return _react2.default.createElement(
-	        'span',
-	        null,
-	        object.constructor.name
-	      );
+	      if (object.constructor) {
+	        return _react2.default.createElement(
+	          'span',
+	          null,
+	          object.constructor.name
+	        );
+	      }
+	      return _react2.default.createElement('span', null);
 	    case 'function':
 	      return _react2.default.createElement(
 	        'span',

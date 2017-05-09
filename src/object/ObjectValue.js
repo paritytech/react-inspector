@@ -31,7 +31,10 @@ const ObjectValue = ({ object }, { theme }) => {
       if(Array.isArray(object)){
         return <span>{`Array[${object.length}]`}</span>
       }
-      return <span>{object.constructor.name}</span>
+      if (object.constructor) {
+        return <span>{object.constructor.name}</span>
+      }
+      return <span></span>
     case 'function':
       return <span>
                 <span style={styles.objectValueFunctionKeyword}>function</span>
