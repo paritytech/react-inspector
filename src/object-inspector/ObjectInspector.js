@@ -6,6 +6,9 @@ import ObjectLabel from './ObjectLabel'
 
 import ThemeProvider from '../styles/ThemeProvider'
 
+// @see sindresorhus/object-assign#16
+const propIsEnumerable = Object.prototype.propertyIsEnumerable
+
 const createIterator = (showNonenumerable, sortObjectKeys) => {
   const objectIterator = function* (data) {
     const shouldIterate = (typeof data === 'object' && data !== null) || typeof data === 'function'
@@ -40,7 +43,7 @@ const createIterator = (showNonenumerable, sortObjectKeys) => {
       }
 
       for(let propertyName of keys){
-        if(data.propertyIsEnumerable(propertyName)){
+        if(propIsEnumerable.call(data, propertyName)){
           const propertyValue = data[propertyName]
           yield {
             name: propertyName,
